@@ -129,6 +129,7 @@ Envía una solicitud POST a `http://<IP>:8080/dalvik` con el siguiente formato J
 ## Documentación
 
 - 📖 [Documentación Completa en Español](COMO_FUNCIONA.md) - Explicación detallada de la arquitectura y funcionamiento
+- 📊 [Diagrama de Flujo](DIAGRAMA_FLUJO.md) - Diagramas visuales y ejemplos prácticos
 - 🌐 [English README](README.md) - Original README in English
 
 ## Permisos Requeridos

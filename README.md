@@ -14,7 +14,7 @@
 
 An Android Proxy Server for invoking APK stub functions.
 
-📖 **[Documentación en Español](README.es.md) | [Cómo Funciona (Español)](COMO_FUNCIONA.md)**
+📖 **[Documentación en Español](README.es.md) | [Cómo Funciona](COMO_FUNCIONA.md) | [Diagrama de Flujo](DIAGRAMA_FLUJO.md)**
 </div>
 
 > **⚠️ SECURITY WARNING**: ApkBridge has **no authentication or encryption**. It is designed for **local network use only**. **DO NOT expose it to the Internet** without additional security measures (VPN, reverse proxy with auth, etc.). Use only on trusted networks.

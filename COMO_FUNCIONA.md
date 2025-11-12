@@ -1,5 +1,7 @@
 # Cómo Funciona ApkBridge
 
+> 📊 **[Ver Diagrama de Flujo Visual](DIAGRAMA_FLUJO.md)** - Diagramas y ejemplos prácticos paso a paso
+
 ## Descripción General
 
 ApkBridge es un servidor proxy HTTP para Android que permite invocar funciones de extensiones APK (específicamente extensiones de Tachiyomi para manga y anime). La aplicación actúa como un puente entre clientes externos y las extensiones instaladas en formato APK, permitiendo la ejecución dinámica de código de las extensiones sin necesidad de instalarlas permanentemente en el dispositivo.
