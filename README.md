@@ -13,6 +13,8 @@
 
 
 An Android Proxy Server for invoking APK stub functions.
+
+📖 **[Documentación en Español](README.es.md) | [Cómo Funciona (Español)](COMO_FUNCIONA.md)**
 </div>
 
 ## Installing
