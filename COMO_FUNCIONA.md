@@ -4,6 +4,8 @@
 
 ApkBridge es un servidor proxy HTTP para Android que permite invocar funciones de extensiones APK (específicamente extensiones de Tachiyomi para manga y anime). La aplicación actúa como un puente entre clientes externos y las extensiones instaladas en formato APK, permitiendo la ejecución dinámica de código de las extensiones sin necesidad de instalarlas permanentemente en el dispositivo.
 
+> **⚠️ IMPORTANTE - USO EN RED LOCAL**: ApkBridge está diseñado para uso en red local (LAN). El servidor **NO tiene autenticación ni cifrado**, por lo que **NO debe exponerse a Internet** directamente. Úsalo solo dentro de tu red Wi-Fi local o conectando dispositivos mediante hotspot/USB.
+
 ## Arquitectura de la Aplicación
 
 ### 1. Componentes Principales
@@ -215,7 +217,30 @@ Permisos requeridos:
 - Logs visibles en la interfaz
 - Útil para depuración y monitoreo
 
-## Casos de Uso
+## Casos de Uso en Red Local
+
+### Configuraciones de Red Típicas
+
+#### Configuración 1: Desde PC/Laptop en la misma Wi-Fi
+```
+Android (ApkBridge) IP: 192.168.1.50:8080
+    ↓ (Wi-Fi doméstica)
+PC/Laptop: Envía request a http://192.168.1.50:8080/dalvik
+```
+
+#### Configuración 2: Android como Hotspot
+```
+Android (ApkBridge + Hotspot) IP: 192.168.43.1:8080
+    ↓ (Hotspot personal)
+Laptop conectado al hotspot → http://192.168.43.1:8080/dalvik
+```
+
+#### Configuración 3: Localhost (mismo dispositivo)
+```
+Android (ApkBridge + Cliente) 
+Cliente accede a: http://127.0.0.1:8080/dalvik
+o http://localhost:8080/dalvik
+```
 
 ### Caso de Uso 1: Buscar Manga
 1. Cliente envía POST a `/dalvik` con:
@@ -276,11 +301,23 @@ Permisos requeridos:
 
 ## Limitaciones y Consideraciones
 
-1. **Puerto Fijo**: El servidor siempre usa el puerto 8080
-2. **Sin Autenticación**: No hay seguridad en el endpoint
-3. **Red Local**: Diseñado para uso en red local
-4. **Recursos**: Cada invocación crea y destruye un ClassLoader
-5. **Compatibilidad**: Depende de la estructura de extensiones de Tachiyomi
+### Seguridad
+1. **⚠️ Sin Autenticación**: No hay autenticación, cualquiera en la red puede acceder
+2. **⚠️ Sin Cifrado**: Las comunicaciones van en texto plano (HTTP, no HTTPS)
+3. **⚠️ Solo Red Local**: **NUNCA expongas el servidor a Internet** - úsalo solo en tu red Wi-Fi local
+
+### Técnicas
+4. **Puerto Fijo**: El servidor siempre usa el puerto 8080
+5. **Recursos**: Cada invocación crea y destruye un ClassLoader
+6. **Compatibilidad**: Depende de la estructura de extensiones de Tachiyomi
+
+### Escenarios de Uso Seguro
+- ✅ Mismo dispositivo (localhost)
+- ✅ Dispositivos en la misma red Wi-Fi doméstica
+- ✅ Conexión mediante hotspot personal
+- ✅ Conexión USB con tethering
+- ❌ Exponer a Internet público
+- ❌ Redes Wi-Fi públicas sin VPN
 
 ## Conclusión
 

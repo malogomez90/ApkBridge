@@ -19,6 +19,8 @@ Un servidor proxy HTTP para Android que permite invocar funciones de extensiones
 
 ApkBridge es una aplicación Android que funciona como un servidor proxy HTTP, permitiéndote ejecutar extensiones APK (específicamente extensiones de Tachiyomi para manga y anime) de forma dinámica sin necesidad de instalarlas permanentemente en tu dispositivo.
 
+> **⚠️ IMPORTANTE**: ApkBridge es para **uso en red local únicamente**. No tiene autenticación ni cifrado, por lo que **NO debe exponerse a Internet**. Úsalo solo en tu red Wi-Fi doméstica o conexiones privadas.
+
 ### Características Principales
 
 - 🚀 **Servidor HTTP Local**: Ejecuta un servidor en tu dispositivo Android (puerto 8080)
@@ -39,6 +41,24 @@ ApkBridge es una aplicación Android que funciona como un servidor proxy HTTP, p
 5. **Recibe los datos** en formato JSON
 
 Para una explicación detallada de la arquitectura y funcionamiento interno, consulta [COMO_FUNCIONA.md](COMO_FUNCIONA.md).
+
+## ⚠️ Consideraciones de Seguridad
+
+**ApkBridge NO tiene autenticación ni cifrado**. Esto significa:
+
+- ❌ No hay contraseña ni tokens de acceso
+- ❌ Las comunicaciones van sin cifrar (HTTP, no HTTPS)
+- ❌ Cualquier dispositivo en tu red puede acceder al servidor
+- ❌ El código de las extensiones APK se ejecuta dinámicamente
+
+**Úsalo SOLO en redes confiables:**
+- ✅ Tu red Wi-Fi doméstica con contraseña
+- ✅ Hotspot personal de tu teléfono
+- ✅ Conexión USB directa
+- ❌ **NUNCA en redes Wi-Fi públicas** (cafeterías, aeropuertos, etc.)
+- ❌ **NUNCA expongas el puerto a Internet** sin protección adicional
+
+Si necesitas acceso desde Internet, usa una VPN para conectarte a tu red local de forma segura.
 
 ## Instalación
 
@@ -121,10 +141,19 @@ Envía una solicitud POST a `http://<IP>:8080/dalvik` con el siguiente formato J
 
 ## Casos de Uso
 
-- **Desarrollo de Clientes**: Desarrolla aplicaciones que consuman extensiones de Tachiyomi
+### Escenarios Recomendados (Red Local)
+- **Desarrollo de Clientes**: Desarrolla aplicaciones que consuman extensiones de Tachiyomi en tu PC/Mac mientras el servidor corre en tu Android
 - **Testing de Extensiones**: Prueba extensiones sin instalarlas permanentemente
-- **Acceso Remoto**: Accede a extensiones desde otros dispositivos en tu red local
-- **Automatización**: Crea scripts para automatizar búsquedas y descargas
+- **Acceso desde Laptop/PC**: Accede a extensiones desde tu computadora en la misma red Wi-Fi
+- **Automatización Local**: Crea scripts para automatizar búsquedas y descargas dentro de tu red doméstica
+- **Desarrollo Multi-dispositivo**: Comparte extensiones entre varios dispositivos en tu red local
+
+### Configuraciones de Red Seguras
+- ✅ **Red Wi-Fi Doméstica**: Todos los dispositivos en tu casa
+- ✅ **Hotspot Personal**: Android como punto de acceso para otros dispositivos
+- ✅ **USB Tethering**: Conexión directa mediante cable USB
+- ✅ **Localhost**: Acceso desde el mismo dispositivo Android (127.0.0.1)
+- ❌ **Internet Público**: NUNCA expongas el servidor a Internet sin protección adicional (VPN, túnel, etc.)
 
 ## Tecnologías
 
